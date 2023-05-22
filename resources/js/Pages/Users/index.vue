@@ -1,8 +1,18 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import AppLayoutSideBar from '@/Layouts/AppLayoutSideBar.vue';
+import { VDataTable } from 'vuetify/labs/VDataTable'
 
-import { VTable } from 'vuetify/lib/components/index.mjs';
+import { ref }from 'vue';
+
+const itemsPerPage = ref(5);
+const headers = [
+    {title: 'Id', align: 'center', key: 'id' },
+    {title: 'Name', align: 'center', key: 'name' },
+    {title: 'Email', align: 'center', key: 'email' },
+    {title: 'Photo URL', align: 'center', key: 'profile_photo_url'},
+];
+
 
 defineProps({
     users: Object
@@ -11,44 +21,24 @@ defineProps({
 </script>
 
 <template>
-    <AppLayoutSideBar>
+   <AppLayoutSideBar>
         <AppLayout>
             <div class="p-3 rounded-md">
-                <v-table class="border table-small">
-                    <template v-slot:default>
-                        <thead>
-                            <tr>
-                                <th class="text-uppercase">
-                                    ID
-                                </th>
-                                <th class="text-center text-uppercase">
-                                    Name
-                                </th>
-                                <th class="text-center text-uppercase">
-                                    Email
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="user in users" :key="user.id">
-                                <td>{{ user.id }}</td>
-                                <td class="text-center">
-                                    {{ user.name }}
-                                </td>
-                                <td class="text-center">
-                                    {{ user.email }}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </template>
-                </v-table>
+                <v-data-table 
+                    v-model:items-per-page="itemsPerPage" 
+                    :headers="headers" 
+                    :items="users" 
+                    item-value="name"
+                    class="elevation-1 table-sm">
+                </v-data-table>
             </div>
         </AppLayout>
     </AppLayoutSideBar>
 </template>
 
 <style scoped>
-.table-small {
+
+.table-sm{
     font-size: 0.875rem;
 }
 </style>

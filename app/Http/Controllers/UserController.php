@@ -9,6 +9,6 @@ use Inertia\Inertia;
 class UserController extends Controller
 {
     public function index(){
-        return Inertia::render('Users/index', ['users' => User::all()]);
+        return Inertia::render('Users/index', ['users' => User::all(['id','name','email'])]);
     }
 }
