@@ -5,6 +5,8 @@ import AppLayoutSideBar from '@/Layouts/AppLayoutSideBar.vue';
 
 <template>
     <AppLayoutSideBar>
-        <AppLayout></AppLayout>
+    <v-card class="px-5 py-5 m-2">
+        Welcome, Admin
+    </v-card>
     </AppLayoutSideBar>
 </template>

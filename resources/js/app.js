@@ -9,6 +9,7 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 // Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
+import { pt } from 'vuetify/locale'
 
 //All components
 import * as components from 'vuetify/components'
@@ -18,7 +19,13 @@ import * as directives from 'vuetify/directives'
 const vuetify = createVuetify({
   components,
   directives,
-  ssr: true
+  ssr: true,
+  locale: {
+    locale: 'pt',
+    fallback: 'en',
+    messages: { pt },
+  },
+  
 })
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
