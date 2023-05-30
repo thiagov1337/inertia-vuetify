@@ -5,6 +5,7 @@ import { VDataTable } from 'vuetify/labs/VDataTable'
 
 import { ref }from 'vue';
 
+const search = ref();
 const itemsPerPage = ref(5);
 const headers = [
     {title: 'Id', align: 'center', key: 'id' },
@@ -12,7 +13,6 @@ const headers = [
     {title: 'Email', align: 'center', key: 'email' },
     {title: 'Photo URL', align: 'center', key: 'profile_photo_url'},
 ];
-
 
 defineProps({
     users: Object
@@ -22,17 +22,26 @@ defineProps({
 
 <template>
    <AppLayoutSideBar>
-        <AppLayout>
-            <div class="p-3 rounded-md">
-                <v-data-table 
+            <v-card class="m-2 rounded-md">
+                <v-card-title>
+                Users
+                <v-spacer></v-spacer>
+                <v-text-field
+                    v-model="search"
+                    append-icon="mdi-magnify"
+                    label="Search"
+                    single-line
+                    hide-details
+                ></v-text-field>
+                </v-card-title>
+                <v-data-table
+                    :headers="headers"
+                    :items="users"
+                    :search="search"
                     v-model:items-per-page="itemsPerPage" 
-                    :headers="headers" 
-                    :items="users" 
-                    item-value="name"
-                    class="elevation-1 table-sm">
-                </v-data-table>
-            </div>
-        </AppLayout>
+                    class="elevation-1 table-sm"
+                ></v-data-table>
+            </v-card>
     </AppLayoutSideBar>
 </template>
 
